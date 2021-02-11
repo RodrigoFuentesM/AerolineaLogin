@@ -1,0 +1,26 @@
+body{
+    background-color: lightgray;
+}
+.fondo {
+  /* The image used */
+  background-image: url("../img/clouds.jpg");
+
+  /* Full height */
+  /*height: 100%;
+
+  /* Center and scale the image nicely 
+  */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.yCentrado {
+    padding-top: 150px; 
+    padding-bottom: 150px
+}
+
+#main-header{
+    background-color: #1464DC;
+}

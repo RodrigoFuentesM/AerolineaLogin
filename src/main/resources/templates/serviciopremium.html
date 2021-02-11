@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>SERVICIO TURISMO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+              integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+              crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="./css/estilo.css">
+        <script src="https://kit.fontawesome.com/c2f0fa766c.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header id="main-header" class="py-2 text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>
+                            <span class="text-danger">LASER </span><span class="text-warning"> Airlines</span>
+                        </h1>
+                        <h4>
+                            <i>Rápidas y precisas</i> 
+                        </h4>
+                    </div>
+
+                    <div class="col text-right">
+                        <form method="POST" th:action="@{/logout}">
+                            <h4>
+                                <b>Ingresado como: </b><span class="text-warning" sec:authentication="name"></span>
+                            </h4>
+                            <input class="btn btn-danger" type="submit" value="Cerrar Sesión"/>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </header>
+        <section class="fondo">
+            <div class="container pt-2">
+                <form method="GET" th:action="@{/index}">
+                    <div class="py-2 bg-dark text-white card mx-auto" style="width: 40rem;">
+                        <h3 class="text-center"><i class="fas fa-glass-cheers"></i>  <b>SERVICIO PREMIUM</b>
+
+                            <button sec:authorize="hasRole('ROLE_ADMIN')" type="submit" class="btn btn-primary mx-auto" name="agregar" value="vehiculo">
+                                <h5>
+                                    <i class="fas fa-arrow-alt-circle-left"></i> Volver
+                                </h5>
+                            </button>
+
+                        </h3>
+                    </div>
+                </form>
+            </div>
+            <section>
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card bg-light my-4">
+                            <div th:if="${servicios != null and !servicios.empty}">
+                                <table class="table table-hover">
+                                    <thead class="bg-success text-white">
+                                        <tr>
+                                            <th>Origen</th>
+                                            <th>Destino</th>
+                                            <th>Fecha de Vuelo</th>
+                                            <th>Hotel</th>
+                                            <th>Tiempo estadía</th>
+                                            <th>Estrellas del hotel</th>
+                                            <th>Valor</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tr th:each="s: ${servicios}">
+                                        <td th:text="${s.origen}"></td>
+                                        <td th:text="${s.destino}"></td>
+                                        <td th:text="${s.fecha}"></td>
+                                        <td th:text="${s.hotel}"></td>
+                                        <td th:text="${s.tiempoEstadia}"></td>
+                                        <td th:text="${s.hotelEstrellas}"></td>
+                                        <td >$<span th:text="${s.valor}"></span></td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <div th:if="${servicios == null or servicios.empty}">
+                                No hay personas registradas
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <footer id="pie-pagina" class="bg-info text-white p-5">
+            <div class="container">
+                <div class="col">
+                    <p class="lead text-center">
+                        &copy; Rodrigo - LASER AIRLINES, DUOC UC
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- SCRIPTS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" 
+        crossorigin="anonymous"></script>
+    </body>
+</html>
